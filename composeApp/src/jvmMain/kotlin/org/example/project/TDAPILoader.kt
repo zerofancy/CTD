@@ -17,12 +17,15 @@ object TDAPILoader {
     fun init() {
         println("files is in ${FileKit.filesDir}")
         val libPath = FileKit.filesDir / "jni"
-        ResourceReleaser.releaseResource("windows-x86_64", libPath.absolutePath())
 
         if (hostOs.isWindows) {
+            ResourceReleaser.releaseResource("windows-x86_64", libPath.absolutePath())
             windowsLibraryNames.forEach {
                 System.load((libPath / it).absolutePath())
             }
+        } else if (hostOs.isLinux) {
+            ResourceReleaser.releaseResource("linux", libPath.absolutePath())
+            System.load((libPath / "libtdjni.so").absolutePath())
         } else {
             TODO("Not implemented")
         }
