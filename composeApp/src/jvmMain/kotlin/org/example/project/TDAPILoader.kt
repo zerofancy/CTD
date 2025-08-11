@@ -27,7 +27,8 @@ object TDAPILoader {
             ResourceReleaser.releaseResource("linux", libPath.absolutePath())
             System.load((libPath / "libtdjni.so").absolutePath())
         } else {
-            TODO("Not implemented")
+            ResourceReleaser.releaseResource("macos", libPath.absolutePath())
+            System.load((libPath / "libtdjni.dylib").absolutePath())
         }
     }
 }
