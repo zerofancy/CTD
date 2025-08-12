@@ -10,7 +10,7 @@ fun main() {
 
     TDAPILoader.init()
 
-    Example.main(arrayOf())
+    ClientManager().init()
     application {
         Window(
             onCloseRequest = ::exitApplication,
